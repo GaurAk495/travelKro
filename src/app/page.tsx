@@ -1,8 +1,10 @@
+"use client";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 function page() {
   return (
-    <div className="flex-center ">
-      page
-      <button className="button bg-blue-500 text-white">Click Me</button>
+    <div>
+      {" "}
+      <ButtonComponent cssClass="e-primary">Click Me</ButtonComponent>
     </div>
   );
 }

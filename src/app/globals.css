@@ -1,3 +1,9 @@
+@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+/* Repeat for each required CSS module */
+@import "../../node_modules/@syncfusion/ej2-react-grids/styles/material.css";
+/* For other components, import their _react-..._ CSS */
+
 @import "tailwindcss";
 
 @theme {
@@ -10,10 +16,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@layer components {
-  .button {
-    @apply px-2 py-3 font-bold rounded-2xl;
-  }
 }

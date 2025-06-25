@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Figtree } from "next/font/google";
+import LicenseRegister from "@/synfusion-register";
 
 const figtree = Figtree({ weight: "400", subsets: ["latin"] });
 
@@ -16,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.className} antialiased `}>{children}</body>
+      <body className={`${figtree.className} antialiased `}>
+        <LicenseRegister />
+        {children}
+      </body>
     </html>
   );
 }
