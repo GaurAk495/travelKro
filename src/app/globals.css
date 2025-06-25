@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 800px;
+  --breakpoint-lg: 1024px;
+}
+
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer components {
+  .button {
+    @apply px-2 py-3 font-bold rounded-2xl;
+  }
+}
