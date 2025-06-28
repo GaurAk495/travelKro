@@ -1,10 +1,16 @@
-"use client";
-import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
-function page() {
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import React from "react";
+
+async function page() {
   return (
     <div>
-      {" "}
-      <ButtonComponent cssClass="e-primary">Click Me</ButtonComponent>
+      <Link href="/sign-in">
+        <Button>LoginPage</Button>
+      </Link>
+      <Link href="/dashboard">
+        <Button>DashBoard</Button>
+      </Link>
     </div>
   );
 }
