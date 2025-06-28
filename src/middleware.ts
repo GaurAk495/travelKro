@@ -4,7 +4,7 @@ import { getUser } from "./app/actions/authServer";
 // Middleware function
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
-  console.log(request);
+
   // Example: Check for a cookie named `auth-token`
   const token = request.cookies.get("a_session_685c299d0028711ee1c3")?.value;
 
@@ -13,7 +13,6 @@ export async function middleware(request: NextRequest) {
     url.pathname = "/sign-in";
     return NextResponse.redirect(url);
   }
-  console.log(url, token);
   if (token && url.pathname.startsWith("/sign-in")) {
     const res = await getUser();
     if (res) {
