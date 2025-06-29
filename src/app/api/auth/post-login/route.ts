@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const { account, database } = await createSessionClient({ jwt });
-
+    console.log(appwriteConfig.databaseId, appwriteConfig.userCollection);
     const existing = await database.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userCollection,
