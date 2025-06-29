@@ -1,6 +1,5 @@
-import { account } from "@/utils/appwrite/userClient";
+import { account } from "@/utils/appwrite/WebAppwriteClient";
 import { OAuthProvider } from "appwrite";
-import { redirect } from "next/navigation";
 
 export const loginWithGoogle = async () => {
   try {
@@ -10,14 +9,5 @@ export const loginWithGoogle = async () => {
     );
   } catch (error) {
     console.error("loginWithGoogle", error);
-  }
-};
-
-export const logOutUser = async () => {
-  try {
-    await account.deleteSession("current");
-    redirect("/sign-in");
-  } catch (error) {
-    console.error("logOutUser", error);
   }
 };
