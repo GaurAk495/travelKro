@@ -224,3 +224,62 @@ export const RIGHT_CONFETTI = {
   angle: 135,
   origin: { x: 1, y: 1 },
 };
+
+export const usersList = [
+  {
+    name: "James Anderson",
+    email: "olivia@jsmastery.pro",
+    date_joined: "Jan 6, 2022",
+    itinerary_created: 12,
+    role: "User",
+  },
+  {
+    name: "Michael Johnson",
+    email: "phoenix@jsmastery.pro",
+    date_joined: "Jan 6, 2022",
+    itinerary_created: 21,
+    role: "User",
+  },
+  {
+    name: "David Brown",
+    email: "lana@jsmastery.pro",
+    date_joined: "Jan 6, 2022",
+    itinerary_created: 15,
+    role: "Admin",
+  },
+  {
+    name: "Jason Wilson",
+    email: "demi@jsmastery.pro",
+    date_joined: "Jan 5, 2022",
+    itinerary_created: 3,
+    role: "User",
+  },
+  {
+    name: "Mark Davis",
+    email: "candice@jsmastery.pro",
+    date_joined: "Jan 5, 2022",
+    itinerary_created: 6,
+    role: "Admin",
+  },
+  {
+    name: "Kevin Taylor",
+    email: "natalia@jsmastery.pro",
+    date_joined: "Jan 5, 2022",
+    itinerary_created: 31,
+    role: "User",
+  },
+  {
+    name: "Brian Miller",
+    email: "drew@jsmastery.pro",
+    date_joined: "Jan 4, 2022",
+    itinerary_created: 17,
+    role: "User",
+  },
+  {
+    name: "Orlando Diggs",
+    email: "orlando@jsmastery.pro",
+    date_joined: "Jan 5, 2022",
+    itinerary_created: 26,
+    role: "Admin",
+  },
+];

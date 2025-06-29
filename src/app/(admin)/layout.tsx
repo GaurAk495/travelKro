@@ -1,19 +1,17 @@
-import { redirect } from "next/navigation";
-import { getUser } from "../actions/authServer";
+import { getUserRole } from "@/actions/authAction";
 import MobileSideBar from "./component/MobileSideBar";
 import SideBar from "./component/SideBar";
-// import { createAdminClient } from "@/utils/appwrite/NodeAppwriteClients";
+import { redirect } from "next/navigation";
+import { UserProvider } from "@/context/UserContext";
 
 async function layout({ children }: { children: React.ReactNode }) {
-  const res = await getUser();
+  const res = await getUserRole();
   if (!res) return redirect("/sign-in");
   if (res && res.role !== "admin") return redirect("/");
 
-  // const {user} = await createAdminClient()
-
   const userInfo = {
     email: res.email,
-    name: res.name,
+    name: res.full_name,
     image: res.image_url,
   };
 
@@ -21,7 +19,11 @@ async function layout({ children }: { children: React.ReactNode }) {
     <div className="flex flex-col sm:flex-row h-screen">
       <SideBar user={userInfo} />
       <MobileSideBar user={userInfo} />
-      <div className="flex-1 overflow-y-auto bg-background-300">{children}</div>
+      <UserProvider user={userInfo}>
+        <div className="flex-1 overflow-y-auto bg-background-300">
+          {children}
+        </div>
+      </UserProvider>
     </div>
   );
 }

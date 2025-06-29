@@ -1,7 +1,10 @@
+import { signWithGoogle } from "@/actions/authAction";
 import BrandLogo from "@/components/BrandLogo";
-import SignInwithGoogle from "./SignInwithGoogle";
+import { Button } from "@/components/ui/button";
 
-function Page() {
+import { IoLogoGoogle } from "react-icons/io";
+
+async function Page() {
   return (
     <div className="h-screen relative bg-[url('/bgimage2.jpg')] bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-white/40 z-10" />
@@ -13,7 +16,11 @@ function Page() {
             Sign in with Google to manage destinations, itineraries, and user
             activity with ease.
           </p>
-          <SignInwithGoogle />
+          <form action={signWithGoogle}>
+            <Button className="w-full bg-brand-600 hover:bg-brand-700 duration-300  cursor-pointer">
+              <IoLogoGoogle /> Sign in with Google
+            </Button>
+          </form>
         </div>
       </div>
     </div>

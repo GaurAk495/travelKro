@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUser } from "./app/actions/authServer";
+import { getUserRole } from "./actions/authAction";
 
 const protectedRoutes = ["/dashboard", "/all-user", "/trips"];
-// Middleware function
+
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
-  // Example: Check for a cookie named `auth-token`
   const token = request.cookies.get("travel_kro")?.value;
   const isClientVisitingProtectedPath = protectedRoutes.some(
     (item) => item === url.pathname
@@ -16,18 +15,19 @@ export async function middleware(request: NextRequest) {
     url.pathname = "/sign-in";
     return NextResponse.redirect(url);
   }
+  //having token then checking role and redirecting to respective path.
   if (token && url.pathname.startsWith("/sign-in")) {
-    const res = await getUser();
+    console.log("logpout", token, url.pathname);
+    const res = await getUserRole();
     if (res) {
-      url.pathname = res.role == "user" ? "/" : "/dashboard";
+      url.pathname = res.role === "user" ? "/" : "/dashboard";
       return NextResponse.redirect(url);
     }
   }
 
-  // Otherwise, allow the request to continue
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in"],
+  matcher: ["/dashboard/:path*", "/all-user", "/trips", "/sign-in", "/"],
 };

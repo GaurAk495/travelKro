@@ -8,8 +8,8 @@ function BrandLogo({ className }: { className?: string }) {
         src={"/assets/icons/logo.svg"}
         alt="logo"
         width={30}
-        height={10}
-        className="h-auto"
+        height={30}
+        className="h-auto w-8"
       />
       <p className="font-bold text-2xl">TravelMaker</p>
     </div>

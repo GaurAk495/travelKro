@@ -1,38 +1,46 @@
+// src/lib/server/appwrite.js
 "use server";
 import { Client, Account, Databases, Users } from "node-appwrite";
-import { appwriteConfig } from "./WebAppwriteClient";
 import { cookies } from "next/headers";
+import { appwriteConfig } from "./appwriteKey";
+
+export async function createSessionClient() {
+  const client = new Client()
+    .setEndpoint(appwriteConfig.apiEndpoint)
+    .setProject(appwriteConfig.projectId);
+
+  const session = (await cookies()).get("travel_kro");
+  if (!session || !session.value) {
+    throw new Error("No session");
+  }
+
+  client.setSession(session.value);
+
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get databases() {
+      return new Databases(client);
+    },
+  };
+}
 
 export async function createAdminClient() {
-  const client = new Client();
-  client
+  const client = new Client()
     .setEndpoint(appwriteConfig.apiEndpoint)
     .setProject(appwriteConfig.projectId)
     .setKey(appwriteConfig.apiKey);
 
-  const account = new Account(client);
-  const database = new Databases(client);
-  const user = new Users(client);
-
-  return { account, database, user };
-}
-
-export async function createSessionClient({ jwt }: { jwt?: string }) {
-  const cookieStore = await cookies();
-  const client = new Client();
-
-  client
-    .setEndpoint(appwriteConfig.apiEndpoint)
-    .setProject(appwriteConfig.projectId);
-
-  // Fallback to cookie if jwt is not passed
-  const finalJwt = jwt || cookieStore.get("travel_kro")?.value;
-  if (!finalJwt) throw Error("No JWT found");
-
-  client.setJWT(finalJwt);
-
-  const account = new Account(client);
-  const database = new Databases(client);
-
-  return { account, database };
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get databases() {
+      return new Databases(client);
+    },
+    get user() {
+      return new Users(client);
+    },
+  };
 }

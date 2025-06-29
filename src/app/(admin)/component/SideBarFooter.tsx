@@ -1,20 +1,9 @@
-"use client";
+import { logOutUser } from "@/actions/authAction";
 import { Separator } from "@/components/ui/separator";
-import { account } from "@/utils/appwrite/WebAppwriteClient";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React from "react";
 import { IoIosLogOut } from "react-icons/io";
 
 function SideBarFooter({ user }: User) {
-  const router = useRouter();
-  const handleOnlogOut = async () => {
-    await account.deleteSession("current");
-    const res = await fetch("/api/auth/logout");
-    if (res.redirected) {
-      router.push("/sign-in");
-    }
-  };
   return (
     <div className="flex items-center justify-between gap-1 rounded-md mt-auto">
       <Image
@@ -32,12 +21,11 @@ function SideBarFooter({ user }: User) {
         <p className="font-semibold truncate text-sm">{user.name}</p>
         <p className="text-xs truncate">{user.email}</p>
       </article>
-      <button
-        className="p-1 pl-2 rounded-full cursor-pointer"
-        onClick={handleOnlogOut}
-      >
-        <IoIosLogOut size={45} className="rotate-180 text-red-500" />
-      </button>
+      <form action={logOutUser}>
+        <button className="p-1 pl-2 rounded-full cursor-pointer" type="submit">
+          <IoIosLogOut size={28} className="rotate-180 text-red-500" />
+        </button>
+      </form>
     </div>
   );
 }
