@@ -25,11 +25,13 @@ export async function createSessionClient({ jwt }: { jwt?: string }) {
     .setEndpoint(appwriteConfig.apiEndpoint)
     .setProject(appwriteConfig.projectId);
 
-  // Fallback to cookie if jwt is not passed
-  const finalJwt = jwt || cookieStore.get("travel_kro")?.value;
-  if (!finalJwt) throw Error("No JWT found");
-
-  client.setJWT(finalJwt);
+  if (jwt) {
+    client.setJWT(jwt);
+  } else {
+    const session = cookieStore.get("a_session_685c299d0028711ee1c3")?.value;
+    if (!session) throw Error("No session");
+    client.setSession(session);
+  }
 
   const account = new Account(client);
   const database = new Databases(client);

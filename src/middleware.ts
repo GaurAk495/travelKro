@@ -7,7 +7,8 @@ export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
   // Example: Check for a cookie named `auth-token`
-  const token = request.cookies.get("travel_kro")?.value;
+  const token = request.cookies.get("a_session_685c299d0028711ee1c3")?.value;
+  console.log(token);
   const isClientVisitingProtectedPath = protectedRoutes.some(
     (item) => item === url.pathname
   );
