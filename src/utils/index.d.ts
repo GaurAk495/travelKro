@@ -5,3 +5,14 @@ declare type User = {
     image: string;
   };
 };
+declare type Country = {
+  name: string;
+  code: string;
+  value: string;
+  flag: string;
+  openMap: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+};

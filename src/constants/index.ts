@@ -3,14 +3,15 @@ export const sidebarItems = [
     id: 1,
     icon: "/assets/icons/home.svg",
     label: "Dashboard",
-    href: "/dashboard",
+    href: "/admin/dashboard",
+    Title: "Welcome User 👋",
     description: "Track activity, trends, & popular destinations in real time",
   },
   {
     id: 3,
     icon: "/assets/icons/users.svg",
     label: "All Users",
-    href: "/all-users",
+    href: "/admin/all-users",
     Title: "Manage Users",
     description: "Manage and oversee all user accounts seamlessly.",
   },
@@ -18,9 +19,9 @@ export const sidebarItems = [
     id: 4,
     icon: "/assets/icons/itinerary.svg",
     label: "AI Trips",
-    href: "/trips",
+    href: "/admin/trips",
     Title: "Add New Trips",
-    description: "Discover tailor-made journeys powered by AI.",
+    description: "View and generate Al travel plans",
   },
 ];
 
@@ -153,7 +154,7 @@ export const travelStyles = [
   "City Exploration",
 ];
 
-export const interests = [
+export const interestOptions = [
   "Food & Culinary",
   "Historical Sites",
   "Hiking & Nature Walks",
@@ -224,62 +225,3 @@ export const RIGHT_CONFETTI = {
   angle: 135,
   origin: { x: 1, y: 1 },
 };
-
-export const usersList = [
-  {
-    name: "James Anderson",
-    email: "olivia@jsmastery.pro",
-    date_joined: "Jan 6, 2022",
-    itinerary_created: 12,
-    role: "User",
-  },
-  {
-    name: "Michael Johnson",
-    email: "phoenix@jsmastery.pro",
-    date_joined: "Jan 6, 2022",
-    itinerary_created: 21,
-    role: "User",
-  },
-  {
-    name: "David Brown",
-    email: "lana@jsmastery.pro",
-    date_joined: "Jan 6, 2022",
-    itinerary_created: 15,
-    role: "Admin",
-  },
-  {
-    name: "Jason Wilson",
-    email: "demi@jsmastery.pro",
-    date_joined: "Jan 5, 2022",
-    itinerary_created: 3,
-    role: "User",
-  },
-  {
-    name: "Mark Davis",
-    email: "candice@jsmastery.pro",
-    date_joined: "Jan 5, 2022",
-    itinerary_created: 6,
-    role: "Admin",
-  },
-  {
-    name: "Kevin Taylor",
-    email: "natalia@jsmastery.pro",
-    date_joined: "Jan 5, 2022",
-    itinerary_created: 31,
-    role: "User",
-  },
-  {
-    name: "Brian Miller",
-    email: "drew@jsmastery.pro",
-    date_joined: "Jan 4, 2022",
-    itinerary_created: 17,
-    role: "User",
-  },
-  {
-    name: "Orlando Diggs",
-    email: "orlando@jsmastery.pro",
-    date_joined: "Jan 5, 2022",
-    itinerary_created: 26,
-    role: "Admin",
-  },
-];

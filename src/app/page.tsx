@@ -5,10 +5,10 @@ import React from "react";
 async function page() {
   return (
     <div>
-      <Link href="/sign-in">
+      <Link href="/auth/sign-in">
         <Button>LoginPage</Button>
       </Link>
-      <Link href="/dashboard">
+      <Link href="/admin/dashboard">
         <Button>DashBoard</Button>
       </Link>
     </div>

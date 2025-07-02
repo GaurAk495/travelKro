@@ -1,20 +1,59 @@
 "use client";
-import React, { createContext, useContext } from "react";
+import { account } from "@/utils/appwrite/WebAppwriteClient";
+import { usePathname, useRouter } from "next/navigation";
+import { createContext, useContext, useEffect, useState } from "react";
 
-type UserInfo = {
-  email: string;
+type User = {
   name: string;
-  image: string;
+  email: string;
+  $id: string;
+  prefs: { [key: string]: string };
 };
 
-const UserContext = createContext<UserInfo | null>(null);
+type UserInfo = User | undefined;
+
+const UserContext = createContext<UserInfo>(undefined);
 
 export const useUser = () => useContext(UserContext);
 
-export const UserProvider = ({
-  user,
-  children,
-}: {
-  user: UserInfo;
-  children: React.ReactNode;
-}) => <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<{
+    name: string;
+    email: string;
+    $id: string;
+    prefs: { [key: string]: string };
+  }>();
+  const [isLoading, setLoading] = useState(true);
+  const router = useRouter();
+  const path = usePathname();
+  // User fetch karne ke liye
+  useEffect(() => {
+    setLoading(true);
+    async function userLoader() {
+      try {
+        const user = await account.get();
+        const { name, email, $id, prefs } = user;
+        setUser({ name, email, $id, prefs });
+      } catch (error) {
+        console.log(
+          "fetching user Error",
+          error instanceof Error && error.message
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    userLoader();
+  }, [router, path]);
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600" />
+      </div>
+    );
+  }
+
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+};

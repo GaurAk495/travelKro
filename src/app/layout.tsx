@@ -17,10 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.className} antialiased `}>
-        {/* <LicenseRegister /> */}
-        {children}
-      </body>
+      <body className={`${figtree.className} antialiased `}>{children}</body>
     </html>
   );
 }
