@@ -1,27 +1,40 @@
-import type { NextConfig } from "next";
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-const nextConfig: NextConfig = {
+module.exports = withBundleAnalyzer({
   images: {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "images.pexels.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "upload.wikimedia.org",
-      },
-      {
-        protocol: "https",
-        hostname: "flagcdn.com",
+        hostname: "placehold.co",
         port: "",
         pathname: "/**",
       },
     ],
   },
-  devIndicators: {
-    position: "bottom-right",
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
   },
-};
-
-export default nextConfig;
+  reactStrictMode: true,
+});

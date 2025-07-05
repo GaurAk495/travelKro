@@ -1,16 +1,6 @@
 "use client";
 import { account } from "@/utils/appwrite/WebAppwriteClient";
-import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-
-type User = {
-  name: string;
-  email: string;
-  $id: string;
-  prefs: { [key: string]: string };
-};
-
-type UserInfo = User | undefined;
 
 const UserContext = createContext<UserInfo>(undefined);
 
@@ -24,8 +14,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     prefs: { [key: string]: string };
   }>();
   const [isLoading, setLoading] = useState(true);
-  const router = useRouter();
-  const path = usePathname();
+
   // User fetch karne ke liye
   useEffect(() => {
     setLoading(true);
@@ -44,7 +33,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
     userLoader();
-  }, [router, path]);
+  }, []);
 
   // Loading state
   if (isLoading) {

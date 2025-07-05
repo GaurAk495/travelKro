@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
-// import LicenseRegister from "@/synfusion-register";
+import { UserProvider } from "@/context/UserContext";
+import RouteGuard from "@/components/RouteGuard";
 import "@/app/globals.css";
 
 const figtree = Figtree({ weight: "500", subsets: ["latin"] });
@@ -17,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.className} antialiased `}>{children}</body>
+      <body className={`${figtree.className} antialiased `}>
+        <UserProvider>
+          <RouteGuard>{children}</RouteGuard>
+        </UserProvider>
+      </body>
     </html>
   );
 }

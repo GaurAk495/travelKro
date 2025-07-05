@@ -31,14 +31,14 @@ export default function RouteGuard({
       // Check role-based access
       if (users.prefs.role === "user") {
         // User trying to access admin routes
-        router.push("/");
+        router.push("/trips");
         return;
       }
     }
     setLoading(false);
     // User is authorized for this route
     setAuthorized(true);
-  }, [users, loading, pathname, router]);
+  }, [users, router]);
 
   // Show loading spinner while checking auth
   if (loading || !authorized) {

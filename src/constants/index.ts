@@ -19,51 +19,9 @@ export const sidebarItems = [
     id: 4,
     icon: "/assets/icons/itinerary.svg",
     label: "AI Trips",
-    href: "/admin/trips",
+    href: "/trips",
     Title: "Add New Trips",
     description: "View and generate Al travel plans",
-  },
-];
-
-export const metricsData = [
-  {
-    title: "Total Users",
-    last: 8400,
-    current: 12450,
-    data: [
-      { value: 100 },
-      { value: 200 },
-      { value: 150 },
-      { value: 250 },
-      { value: 300 },
-      { value: 280 },
-    ],
-  },
-  {
-    title: "Total Trips",
-    last: 3350,
-    current: 3210,
-    data: [
-      { value: 100 },
-      { value: 200 },
-      { value: 150 },
-      { value: 250 },
-      { value: 300 },
-      { value: 280 },
-    ],
-  },
-  {
-    title: "Active Users Today",
-    last: 450,
-    current: 520,
-    data: [
-      { value: 100 },
-      { value: 200 },
-      { value: 150 },
-      { value: 250 },
-      { value: 300 },
-      { value: 280 },
-    ],
   },
 ];
 
