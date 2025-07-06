@@ -1,3 +1,4 @@
+"use client";
 import {
   Sheet,
   SheetContent,
@@ -13,8 +14,10 @@ import SideBarMenuItem from "./SideBarMenuItem";
 import { Separator } from "@/components/ui/separator";
 import SideBarFooter from "./SideBarFooter";
 import BrandLogo from "@/components/BrandLogo";
+import { useUser } from "@/context/UserContext";
 
 function MobileSideBar() {
+  const user = useUser();
   return (
     <Sheet>
       <div className="flex items-center justify-between sm:hidden px-4 py-2 border">
@@ -32,12 +35,18 @@ function MobileSideBar() {
         </SheetHeader>
         <Separator className="my-4" />
         <div className="space-y-2">
-          {sidebarItems.map(({ id, href, label, icon }) => (
-            <SideBarMenuItem key={id} href={href} label={label} icon={icon} />
-          ))}
+          {sidebarItems.map(({ id, href, label, icon }) => {
+            if (
+              user?.prefs.role === "user" ||
+              (user == undefined && href.startsWith("/admin"))
+            )
+              return;
+            return (
+              <SideBarMenuItem key={id} href={href} label={label} icon={icon} />
+            );
+          })}
         </div>
-
-        <SideBarFooter />
+        {user && <SideBarFooter user={user} />}
       </SheetContent>
     </Sheet>
   );

@@ -5,9 +5,10 @@ import { Calendar1 } from "lucide-react";
 import Image from "next/image";
 import { IoLocationOutline } from "react-icons/io5";
 import MyMap from "../create/MyMap";
-import { Button } from "@/components/ui/button";
 import PopularTrips from "@/components/PopularTrips";
 import { FaStar } from "react-icons/fa";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 async function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -155,11 +156,16 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
         <h4 className="text-lg font-bold">Locaiton on Map: </h4>
         <MyMap position={itineraryData.location.coordinates} />
       </div>
-      <Button className="w-full text-white bg-blue-700 hover:bg-blue-500">
-        Pay and Join Trip{" "}
-        <span className="text-zinc-700 bg-white px-1 rounded-4xl border font-bold">
-          {itineraryData.estimatedPrice}{" "}
-        </span>
+      <Button
+        className="w-full text-white bg-blue-700 hover:bg-blue-500"
+        asChild
+      >
+        <Link href={`/trips/${id}/checkout`}>
+          Pay and Join Trip{" "}
+          <span className="text-zinc-700 bg-white px-1 rounded-4xl border font-bold">
+            {itineraryData.estimatedPrice}{" "}
+          </span>
+        </Link>
       </Button>
       <div className="popular-section">
         <PopularTrips />
