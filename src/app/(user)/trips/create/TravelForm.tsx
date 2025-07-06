@@ -29,12 +29,21 @@ import {
   interestOptions,
   travelStyles,
 } from "@/constants";
-import MyMap from "./MyMap";
 import Image from "next/image";
 import { useUser } from "@/context/UserContext";
 import { CreateItineary } from "@/action/tripActions";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const MyMap = dynamic(() => import("./MyMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600" />
+    </div>
+  ),
+});
 
 // Form validation schema
 const formSchema = z.object({

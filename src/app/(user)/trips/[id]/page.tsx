@@ -4,11 +4,11 @@ import { cn } from "@/utils/cn";
 import { Calendar1 } from "lucide-react";
 import Image from "next/image";
 import { IoLocationOutline } from "react-icons/io5";
-import MyMap from "../create/MyMap";
 import PopularTrips from "@/components/PopularTrips";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import MapssrDisabled from "./checkout/MapssrDisabled";
 
 async function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -154,7 +154,7 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
       <Separator className="my-5" />
       <div className="weather-info text-shadow-zinc-700 mt-6 space-y-6 my-5">
         <h4 className="text-lg font-bold">Locaiton on Map: </h4>
-        <MyMap position={itineraryData.location.coordinates} />
+        <MapssrDisabled coordinates={itineraryData.location.coordinates} />
       </div>
       <Button
         className="w-full text-white bg-blue-700 hover:bg-blue-500"
